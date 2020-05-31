@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slavev Game</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- BOOTSTRAP IMPORT-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> <!-- ICON PACK IMPORT-->
+    <link rel="stylesheet" href="css/style.css"> <!-- MOJE STYLY IMPORT-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script> <!-- BOOTSTRAP IMPORT-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script> <!-- P5.js lib IMPORT-->
+    <script src="js/hammer/hammer.min.js"></script> <!-- Hammer.js lib IMPORT-->
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="resources/logo.png" width="150" height="50" class="d-inline-block" alt="snake-logo">
+        </a>
+    </nav>
+</header>
+
+<main class="flex-shrink-0">
+    <div class="container-fluid">
+        <div class="stats container-fluid p-2">
+            <div class="row">
+                <h3 id="header-highest" class="mx-auto">
+                    HIGHEST SCORE:
+                    <small id="info-highest" class="text-muted">START A GAME!</small>
+                </h3>
+            </div>
+            <div class="row">
+                <h3 id="header-current" class="mx-auto">
+                    CURRENT SCORE:
+                    <small id="info-current" class="text-muted">START A GAME!</small>
+                </h3>
+            </div>
+            <div class="row">
+                <h3 class="mx-auto">
+                    GAME MODE:
+                    <small id="info-diff" class="text-muted">START A GAME!</small>
+                </h3>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div id="game-canvas" class="mx-auto">
+                    <!-- P5 CANVAS IS HERE -->
+                </div>
+            </div>
+            <div class="settings row p-1">
+                <div class="btn-group-toggle mx-auto" data-toggle="buttons">
+                    <button id="sett-sound" class="btn"><i id="sound-ico" class="fa fa-volume-up"></i> SOUND</button>
+                    <button id="sett-info" class="btn modal-button"><i class="fa fa-info-circle"></i> INFO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-content border border-dark">
+            <button class="btn btn-outline-dark modal-button">
+                Close
+            </button>
+            <h2>Game modes:</h2>
+            <p>EASY - you can go through walls</p>
+            <p>HARD - you cannot go through walls</p>
+            <h2>Controls:</h2>
+            <p>Arrow up / Swipe up - Go up</p>
+            <p>Arrow down / Swipe down - Go down</p>
+            <p>Arrow left / Swipe left - Go left</p>
+            <p>Arrow right / Swipe right - Go right</p>
+        </div>
+    </div>
+</main>
+
+<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+        <small>&copy; MICHAEL SLAVEV 2020 - Taught by Mr Husťák & StackOverflow (maybe trochu i YouTube)</small>
+    </div>
+</footer>
+
+
+<script src="js/bootstrap/bootstrap.min.js"></script> <!-- BOOTSTRAP IMPORT-->
+<script src="js/sketch.js"></script> <!-- P5 Sketch main IMPORT-->
+<script src="js/game.js"></script> <!-- Game class IMPORT-->
+<script src="js/snake.js"></script> <!-- Snake class IMPORT-->
+<script src="js/food.js"></script> <!-- Food class IMPORT-->
+</body>
+</html>
