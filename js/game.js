@@ -23,11 +23,7 @@ for (let i = 0; i < modalButtons.length; i++) {
 }
 function toggleModalState () {
     modalVisible = !modalVisible;
-    if (modalVisible) {
-        document.body.classList.add('modal-visible');
-    } else {
-        document.body.classList.remove('modal-visible');
-    }
+    document.body.classList.toggle('modal-visible');
 }
 
 
@@ -46,16 +42,18 @@ class Game {
         this._state = state;
     }
 
+    // init game / menu
     initGame = () => {
         background(50, 50, 100);
         let easyB = createButton('EASY');
         let hardB = createButton('HARD');
+        let chooseGame = 'CHOOSE GAME MODE';
 
-        textSize(35);
+        textSize(25);
         fill(255);
-        text('CHOOSE GAME MODE', 60, 220);
+        text(chooseGame, width/2 - textWidth(chooseGame)/2, height/3+15);
 
-        easyB.position(145, 240);
+        easyB.position(width/2 - 50, height/2-25);
         easyB.parent('game-canvas');
         easyB.addClass('btn btn-outline-light menu-btn');
         easyB.mousePressed (() => {
@@ -64,7 +62,7 @@ class Game {
             easyB.remove();
             hardB.remove();
         });
-        hardB.position(255, 240);
+        hardB.position(width/2 - 50, height/2+25);
         hardB.parent('game-canvas');
         hardB.addClass('btn btn-outline-light menu-btn');
         hardB.mousePressed (() => {
@@ -76,6 +74,7 @@ class Game {
         noLoop();
     }
 
+    // start game - change game state to run and create new snake with selected difficulty
     startGame = (diff) => {
         this._state = 'run';
         this._snake = new Snake(diff);
@@ -83,6 +82,7 @@ class Game {
         loop();
     }
 
+    // run game logic
     runGame = () => {
         background(52, 58, 64);
 
@@ -95,12 +95,14 @@ class Game {
         this._snake.update();
         this._snake.show();
 
-        this.fetchAndRefreshData();
+        this.fetchAndRefreshData(); //score data fetch&refresh
     }
 
+    // gameover screen
     endGame = () => {
         let retry = createButton('RETRY');
         let menu = createButton('MENU');
+        let gameOver = 'GAME OVER';
 
         let currentScore = 'With score: ' + sessionStorage.getItem('currentScore');
         let gameMode = 'On game mode: ' + sessionStorage.getItem('gameMode');
@@ -108,16 +110,16 @@ class Game {
         sessionStorage.setItem('gameMode', 'Start a game!');
         this.fetchAndRefreshData();
 
-        textSize(35);
+        textSize(30);
         fill(220, 20, 60);
-        text('GAME OVER', 145, 160);
+        text(gameOver, width/2 - textWidth(gameOver)/2, height/5+15);
 
         textSize(15);
         fill(230);
-        text(currentScore, 150, 190);
-        text(gameMode, 150, 220);
+        text(currentScore, width/2 - textWidth(currentScore)/2, height/5+45);
+        text(gameMode, width/2 - textWidth(gameMode)/2, height/5+75);
 
-        retry.position(145, 240);
+        retry.position(width/2 - 50, height/2+10);
         retry.parent('game-canvas');
         retry.addClass('btn btn-outline-light menu-btn');
         retry.mousePressed (() => {
@@ -125,7 +127,7 @@ class Game {
             retry.remove();
             menu.remove();
         });
-        menu.position(255, 240);
+        menu.position(width/2 - 50, height/2+60);
         menu.parent('game-canvas');
         menu.addClass('btn btn-outline-light menu-btn');
         menu.mousePressed (() => {
@@ -138,10 +140,7 @@ class Game {
         noLoop();
     }
 
-    showInfo = () => {
-
-    }
-
+    // sessionStorage score fetch data and display
     fetchAndRefreshData = () => {
         let info_highest = document.getElementById('info-highest');
         let info_current = document.getElementById('info-current');

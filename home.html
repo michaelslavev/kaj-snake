@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
     <title>Slavev Game</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- BOOTSTRAP IMPORT-->
@@ -15,6 +16,7 @@
 <body>
 
 <header>
+    <!-- Navbar-->
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand mx-auto" href="#">
             <img src="resources/logo.png" width="150" height="50" class="d-inline-block" alt="snake-logo">
@@ -23,6 +25,7 @@
 </header>
 
 <main class="flex-shrink-0">
+    <!-- Score info-->
     <div class="container-fluid">
         <div class="stats container-fluid p-2">
             <div class="row">
@@ -45,12 +48,17 @@
             </div>
         </div>
 
-        <div class="container-fluid">
+        <!-- Game canvas-->
+        <div class="container-fluid game">
             <div class="row">
                 <div id="game-canvas" class="mx-auto">
                     <!-- P5 CANVAS IS HERE -->
                 </div>
             </div>
+        </div>
+
+        <!-- sound settings and info-->
+        <div class="container-fluid">
             <div class="settings row p-1">
                 <div class="btn-group-toggle mx-auto" data-toggle="buttons">
                     <button id="sett-sound" class="btn"><i id="sound-ico" class="fa fa-volume-up"></i> SOUND</button>
@@ -59,6 +67,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal with info-->
     <div class="modal">
         <div class="modal-content border border-dark">
             <button class="btn btn-outline-dark modal-button">
@@ -76,9 +86,10 @@
     </div>
 </main>
 
+<!-- Footer-->
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
-        <small>&copy; MICHAEL SLAVEV 2020 - Taught by Mr Husťák & StackOverflow (maybe trochu i YouTube)</small>
+        <p>&copy; MICHAEL SLAVEV 2020 - Taught by Mr Husťák & StackOverflow (maybe trochu i YouTube)</p>
     </div>
 </footer>
 

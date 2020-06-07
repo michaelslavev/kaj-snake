@@ -1,9 +1,14 @@
 let game;
 let canvas;
 
+// p5js setup function
 function setup() {
     // --- | P5 SETUP
-    canvas = createCanvas(500, 500);
+    if(window.innerWidth < 726) { // different size canvas for mobile devices
+        canvas = createCanvas(300, 300);
+    } else {
+        canvas = createCanvas(500, 500);
+    }
     game = new Game();
     game.fetchAndRefreshData();
     canvas.parent('game-canvas');
@@ -25,6 +30,8 @@ function setup() {
     hammer.on("swipe", swiped);
 }
 
+// p5js draw function called after setup
+// continously called until noLoop fuction is called
 function draw() {
     if(game._state === 'init') {
         game.initGame();
@@ -35,26 +42,35 @@ function draw() {
     }
 }
 
+// p5js function called every key press
 function keyPressed() {
-    if (keyCode === UP_ARROW && game._snake._speed.y !== 1) {
-        game._snake.direction(0, -1);
-    } else if (keyCode === DOWN_ARROW && game._snake._speed.y !== -1) {
-        game._snake.direction(0, 1);
-    } else if (keyCode === RIGHT_ARROW && game._snake._speed.x !== -1) {
-        game._snake.direction(1, 0);
-    } else if (keyCode === LEFT_ARROW && game._snake._speed.x !== 1) {
-        game._snake.direction(-1, 0);
+    // handles snake direction
+    if(game._state === 'run') {
+        if (keyCode === UP_ARROW && game._snake._speed.y !== 1) {
+            game._snake.direction(0, -1);
+        } else if (keyCode === DOWN_ARROW && game._snake._speed.y !== -1) {
+            game._snake.direction(0, 1);
+        } else if (keyCode === RIGHT_ARROW && game._snake._speed.x !== -1) {
+            game._snake.direction(1, 0);
+        } else if (keyCode === LEFT_ARROW && game._snake._speed.x !== 1) {
+            game._snake.direction(-1, 0);
+        }
     }
 }
 
+// hammerjs swipe function
 function swiped(event) {
-    if (event.direction === 8 && game._snake._speed.y !== 1) {
-        game._snake.direction(0, -1);
-    } else if (event.direction === 16 && game._snake._speed.y !== -1) {
-        game._snake.direction(0, 1);
-    } else if (event.direction === 4 && game._snake._speed.x !== -1) {
-        game._snake.direction(1, 0);
-    } else if (event.direction === 2 && game._snake._speed.x !== 1) {
-        game._snake.direction(-1, 0);
+    // handling snake direction on swipe
+    if(game._state === 'run') {
+        if (event.direction === 8 && game._snake._speed.y !== 1) {
+            game._snake.direction(0, -1);
+        } else if (event.direction === 16 && game._snake._speed.y !== -1) {
+            game._snake.direction(0, 1);
+        } else if (event.direction === 4 && game._snake._speed.x !== -1) {
+            game._snake.direction(1, 0);
+        } else if (event.direction === 2 && game._snake._speed.x !== 1) {
+            game._snake.direction(-1, 0);
+        }
     }
-  }
+}
+
